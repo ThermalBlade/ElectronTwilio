@@ -1,0 +1,37 @@
+{
+  "name": "rticommunications",
+  "version": "1.0.0",
+  "description": "Electron/Twilio usage",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThermalBlade/ElectronTwilio.git"
+  },
+  "author": "Cole Proctor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ThermalBlade/ElectronTwilio/issues"
+  },
+  "homepage": "https://github.com/ThermalBlade/ElectronTwilio#readme",
+  "devDependencies": {
+    "electron": "^7.0.0",
+    "electron-builder": "^21.2.0"
+  },
+  "build": {
+    "appId": "com.rticommunications.application",
+    "productName": "RTI Communications",
+    "target": "NSIS",
+    "directories": {
+      "output": "build"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always"
+    }
+  }
+}
