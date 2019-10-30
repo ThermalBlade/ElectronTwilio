@@ -33,5 +33,8 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": "always"
     }
+  },
+  "dependencies": {
+    "twilio": "^3.36.0"
   }
 }
