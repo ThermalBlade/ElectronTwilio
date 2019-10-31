@@ -20,12 +20,13 @@
 :root{
     --background-color: rgb(34, 34, 34);
     --darkest-grey: rgb(53, 53, 53);
-    --second-darkest-grey: rgb(60, 60, 60);
-    --third-darkest-grey: rgb(66, 66, 66);
-    --fourth-darkest-grey: rgb(72, 72, 72);
-    --button-color: rgb(108, 108, 108);
+    --second-darkest-grey: rgb(66, 66, 66);
+    --third-darkest-grey: rgb(72, 72, 72);
+    --fourth-darkest-grey: rgb(100, 100, 100);
+    --fifth-darkest-grey: rgb(121, 121, 121);
+    --button-highlight: rgb(156, 156, 156);
+    --button-color: rgb(172, 172, 172);
     --red-highlight: rgb(100, 26, 26);
-    --table-border-color: grey;
     --drop-zone-line-color: grey;
     --drop-zone-line-highlight: white;
     --text-color: white;
@@ -33,24 +34,57 @@
     --transition-time: 0.25s;
 }
 
-/*Button styling*/
 button{
-    color: var(--text-color);
-    border: 1px solid var(--darkest-grey);
     background-color: var(--button-color);
+}
+button:hover{
+    background-color: var(--button-highlight);
+}
+
+/*Form Styling*/
+form p{
     font-family: var(--font-family);
-    transition: var(--transition-time);
+    font-size: 20px;
+    color: var(--text-color);
+    padding: 0px 0px 20px 0px;
+    margin: 0px;
+}
+input[type=text], select {
+    width: 100%;
+    padding: 12px 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 0px;
+    background-color: var(--fifth-darkest-grey);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: var(--font-family);
     font-size: 16px;
-    padding: 8px;
-    margin: 6px;
-    border-radius: 2px;
-    white-space: nowrap;
+    color: black;
 }
-button:hover, button:disabled{
-    background-color: var(--second-darkest-grey);
+input[type=text]:hover, select:hover, input[type=text]:focus, select:focus{
+    outline: 0
 }
-button:focus{
-    outline: 0;
+input[type=submit] {
+    font-family: var(--font-family);
+    font-size: 16px;
+    color: var(--text-color);
+    background-color: var(--button-color);
+    width: 100%;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .2s;
+}
+input[type=submit]:hover{
+    background-color: var(--button-highlight);
+}
+form {
+    border-radius: 5px;
+    background-color: var(--darkest-grey);
+    padding: 20px;
 }
 
 #container{

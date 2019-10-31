@@ -2,8 +2,7 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 
-//Environment type
-process.env.NODE_ENV = 'development'
+require('dotenv').config();
 
 const {app, BrowserWindow, Menu} = electron;
 let mainWindow;
