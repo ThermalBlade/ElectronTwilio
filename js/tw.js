@@ -4,12 +4,28 @@ const client = require('twilio')(accountSid, authToken);
 
 $('#formSendTextMessageMessage').autogrow()
 
+function popUp(message, element){
+    var div = document.createElement("div");
+    div.className = "popup";
+    var span = document.createElement("span");
+    span.className = "popuptext";
+    span.innerHTML = message;
+    div.appendChild(span);
+    element.parentNode.insertBefore(div, element)
+    span.classList.toggle("show");
+    setTimeout(function(){
+        span.classList.toggle("show");
+        div.parentNode.removeChild(div);
+    }, 3000);
+}
+
 function sentTextPop() {
-    var popup = document.getElementById("sentTextPopup");
+    /*var popup = document.getElementById("sentTextPopup");
     popup.classList.toggle("show");
     setTimeout(function(){
         popup.classList.toggle("show");
-    }, 3000);
+    }, 3000);*/
+    popUp("Sent Text", document.getElementById("formSendTextMessageNumber"));
 }
 
 function validPhoneNumberPop() {
@@ -34,12 +50,12 @@ function sendSingleText(){
         return;
     }
     var mes = document.getElementById("formSendTextMessageMessage").value;
-    client.messages.create({
+    /*client.messages.create({
         body: mes,
         from: process.env.TW_FROM_PHONE_NUMBER,
         statusCallback: 'https://postb.in/b/1572911748562-2505160190630',
         to: pnumber
-    });
+    });*/
     document.getElementById("formSendTextMessage").reset();
     sentTextPop();
 }

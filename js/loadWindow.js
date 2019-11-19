@@ -2,7 +2,7 @@ const remote = require('electron').remote;
 const url = require('url');
 const path = require('path');
 
-function loadSTWindow(){
+function loadWindow(file){
     const BrowserWindow = remote.BrowserWindow;
     const win = new BrowserWindow({
       autoHideMenuBar: true,
@@ -15,7 +15,7 @@ function loadSTWindow(){
       }
     });
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'sendText/sendText.html'),
+        pathname: path.join(__dirname, 'html/' + file),
         protocol:'file:',
         slashes:true
     }));

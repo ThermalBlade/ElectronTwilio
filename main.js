@@ -23,7 +23,7 @@ app.on('ready', function(){
     //Load HTML into window
     //pass file://dirname/mainWindow.html
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'loadWindow.html'),
+        pathname: path.join(__dirname, 'main.html'),
         protocol:'file:',
         slashes:true
     }));
@@ -73,7 +73,7 @@ if(process.env.NODE_ENV !== 'production'){
                 label: 'Go Back',
                 click(item){ //Put DevTools on current window
                     mainWindow.loadURL(url.format({
-                        pathname: path.join(__dirname, 'loadWindow.html'),
+                        pathname: path.join(__dirname, 'main.html'),
                         protocol:'file:',
                         slashes:true
                     }));
