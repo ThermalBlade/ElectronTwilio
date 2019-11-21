@@ -8,24 +8,26 @@
         <div id="container">
             <form id="formSendTextMessage" action="/action_page.php">
                 <p>Send Text Message</p>
-                <!--<div class="popup">
-                    <span class="popuptext" id="validPhonePopup">Invalid Phone Number</span>
-                </div>!-->
                 <label>Phone Number:</label> <input type="text" id="formSendTextMessageNumber">
                 <label>Message: </label> <br> <textarea id="formSendTextMessageMessage" align="left"></textarea>
                 <br>
-                <div class="popup">
-                    <span class="popuptext" id="sentTextPopup">Text Sent</span>
-                </div>
-                <input type="button" onclick="sendSingleText()" value="Send Text">
+                <input type="button" onclick="singleText()" value="Send Text" id="sendTextButton">
             </form>
         </div>
+        
+    <!--FUNCTIONS-->
         <!--JQuery-->
         <script src="https://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
         <!--Autogrow-->
         <link type="text/css" href="../node_modules/jquery-autogrow-textarea/dist/jquery.autogrow.min.css" rel="stylesheet">
         <script type="text/javascript" src="../node_modules/jquery-autogrow-textarea/dist/jquery.autogrow.min.js"></script>
-        <!--saefasesefa-->
-        <script src="../js/tw.js" type="text/javascript"></script>
+        <!--Popups-->
+        <script src="../js/functions/popUp.js" type="text/javascript"></script>
+        <!--Send Text-->
+        <script src="../js/functions/sendText.js" type="text/javascript"></script>
+    <!--PAGE-->
+        <!--Page JS-->
+        <script src="../js/singleText.js" type="text/javascript"></script>
+
     </body>
 </html>
