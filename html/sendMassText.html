@@ -2,28 +2,32 @@
 <html lang="en">
 <head>
     <title>Send Mass Text</title>
-    <link rel="stylesheet" type="text/css" href="../loadStyle.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
     <body>
         <div id="container">
             <form id="formSendTextMessage" action="/action_page.php">
-                <p>Send Mass Text Message</p>
-                <div id="dropZoneHolder">
-                    <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);">
-                        <center>
-                            <p id="FUT">FORM UPLOAD</p>
-                            <p id="DDF">Drag and drop a file or...</p>
-                            <button id="selectBtn">Choose a File</button>
-                        </center>
-                    </div>
+                <p>Send Text Message</p>
+                <label>Phone Number:</label> <input type="text" id="formSendTextMessageNumber">
                 <label>Message: </label> <br> <textarea id="formSendTextMessageMessage" align="left"></textarea>
                 <br>
-                <input type="button" onclick="sendSingleText()" value="Send Text">
+                <input type="button" onclick="singleText()" value="Send Text" id="sendTextButton">
             </form>
         </div>
+        
+    <!--FUNCTIONS-->
+        <!--JQuery-->
         <script src="https://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <!--Autogrow-->
         <link type="text/css" href="../node_modules/jquery-autogrow-textarea/dist/jquery.autogrow.min.css" rel="stylesheet">
         <script type="text/javascript" src="../node_modules/jquery-autogrow-textarea/dist/jquery.autogrow.min.js"></script>
-        <script src="sendMassText.js" type="text/javascript"></script>
+        <!--Popups-->
+        <script src="../js/functions/popUp.js" type="text/javascript"></script>
+        <!--Send Text-->
+        <script src="../js/functions/sendText.js" type="text/javascript"></script>
+    <!--PAGE-->
+        <!--Page JS-->
+        <script src="../js/singleMassText.js" type="text/javascript"></script>
+
     </body>
 </html>

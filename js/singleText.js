@@ -1,4 +1,4 @@
-
+//FUNCTIONALITY FOR singleText.html
 
 function singleText(){
     function sentTextPop() {
