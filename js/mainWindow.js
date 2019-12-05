@@ -3,5 +3,5 @@ function loadSTWindow(){
 }
 
 function loadCSVWindow(){
-    loadWindow('sendMassText.html');
+    loadWindow('sendTextToCSV.html');
 }
