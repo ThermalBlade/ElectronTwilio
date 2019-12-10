@@ -22,20 +22,22 @@ function interpretFile(filePath){
 		for(var i = 0; i < line.length; i++){
 			char = line.charAt(i);
 			if(checkNext){
+				row.push(phrase)
 				if(char == '"'){
-					row.push(phrase);
+					matrix.push(phrase);
 					phrase = "";
 				}
+				phrase = "";
 				checkkNext = false;
 			}
 			if(char === '"'){
 				checkNext = true;
 			}
-			if(char !== ','){
+			else if(char === ','){
 				phrase += char;
 			}
 			else{
-
+				
 			}
 		}
         lineCounter += 1;
