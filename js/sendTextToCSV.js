@@ -15,36 +15,41 @@ function interpretFile(filePath){
     var lineCounter = 0;
 	var eachLine = Promise.promisify(lineReader.eachLine);
 	var matrix = [];
-	console.log("AAA");
     eachLine(filePath, function(line){
 		var row = [];
 		var char;
 		var phrase = "";
 		var checkNext = false;
-		console.log(line);
+		checkPrint = false;
 		for(var i = 0; i < line.length; i++){
 			char = line.charAt(i);
 			if(checkNext){
-				row.push(phrase)
-				if(char == '"'){
-					matrix.push(row);
-					phrase = "";
-				}
-				else if(char == ','){
+				//console.log(char);
+				if(char == ','){
+					//console.log(phrase);
 					row.push(phrase);
 					phrase = "";
 				}
-				checkkNext = false;
+				else{
+					phrase = phrase + char;
+				}
+				checkNext = false;
 			}
 			else{
 				if(char === '"'){
 					checkNext = true;
+					checkPrint = true;
 				}
 				else{
-					phrase += char;
+					phrase = phrase + char;
 				}
 			}
 		}
+		row.push(phrase);
+		phrase = "";
+		matrix.push(row);
+		phrase = "";
+		row = [];
         lineCounter += 1;
     }).then(function(){
         if(lineCounter === 0){
@@ -56,18 +61,11 @@ function interpretFile(filePath){
 			console.log(matrix);
 		}
 	});
-	console.log(matrix);
 	$('#selectBtn').prop('disabled', false);
 }
 
-async function loadFile(callback){
-	let path = await openFile(['csv', 'txt'])
-	console.log(path);
-}
-
-//Look for a CSV file
 document.querySelector('#selectBtn').addEventListener('click', async function(e){
     e.preventDefault();
 	$('#selectBtn').prop('disabled', true);
-	loadFile(interpretFile);
+	openFile(['txt', 'csv'], interpretFile);
 });
