@@ -1,17 +1,7 @@
 const lineReader = require('line-reader');
 var Promise = require('bluebird');
 
-//Fetch colors from CSS
-var bodyStyles = window.getComputedStyle(document.body);
-var dzLineColor = bodyStyles.getPropertyValue('--drop-zone-line-color'); 
-var dzHighlightColor = bodyStyles.getPropertyValue('--drop-zone-line-highlight');
-
-var filePath = "";
-
-//Autogrow the textbox on this page.
-$('#formSendTextMessageMessage').autogrow()
-
-function interpretFile(filePath){
+function csvToMatrix(filePath, callb){
     var lineCounter = 0;
 	var eachLine = Promise.promisify(lineReader.eachLine);
 	var matrix = [];
@@ -61,9 +51,3 @@ function interpretFile(filePath){
 	});
 	$('#selectBtn').prop('disabled', false);
 }
-
-document.querySelector('#selectBtn').addEventListener('click', async function(e){
-    e.preventDefault();
-	$('#selectBtn').prop('disabled', true);
-	openFile(['txt', 'csv'], interpretFile);
-});
