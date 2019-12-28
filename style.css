@@ -27,6 +27,7 @@
     --button-highlight: rgb(156, 156, 156);
     --button-color: rgb(172, 172, 172);
     --red-highlight: rgb(100, 26, 26);
+    --table-border-color: grey;
     --drop-zone-line-color: grey;
     --drop-zone-line-highlight: white;
     --text-color: white;
@@ -145,7 +146,7 @@ form {
     display: inline-block;
     cursor: pointer;
   }
-/* The actual popup (appears on top) */
+    /* The actual popup (appears on top) */
 .popup .popuptext {
     visibility: hidden;
     width: 160px;
@@ -160,7 +161,7 @@ form {
     left: 50%;
     margin-left: 0px;
 }
-/* Popup arrow */
+    /* Popup arrow */
 .popup .popuptext::after {
     content: "";
     position: absolute;
@@ -171,13 +172,13 @@ form {
     border-style: solid;
     border-color: #555 transparent transparent transparent;
 }
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
+    /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s
 }
-/* Add animation (fade in the popup) */
+    /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
 from {opacity: 0;}
 to {opacity: 1;}
@@ -213,3 +214,20 @@ to {opacity:1 ;}
     font-size: 18px;
     color: var(--text-color);
 }
+
+/*Tables*/
+table{
+    border-collapse: collapse;
+    text-align: center;
+    margin: 6px;
+    font-size: 16px;
+    white-space: nowrap;
+}
+td{
+    transition: var(--transition-time);
+    color: var(--text-color);
+    text-align: center;
+    border: 1px solid var(--table-border-color);
+    padding: 6px;
+}
+.selected{ background-color: #ace; }

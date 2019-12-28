@@ -1,3 +1,8 @@
+//TAKES IN FILEPATH AND CALLBACK FUNCTION
+//CALLS CALLBACK FUNCTION WITH MATRIX
+//EXAMPLE CALL: csvToMatrix(filePath, interpretFile);
+//DOES NOT RETURN
+
 const lineReader = require('line-reader');
 var Promise = require('bluebird');
 
@@ -46,8 +51,7 @@ function csvToMatrix(filePath, callb){
             dialog.showErrorBox(err, mes);
 		}
 		else{
-			console.log(matrix);
+			callb(matrix);
 		}
 	});
-	$('#selectBtn').prop('disabled', false);
 }
