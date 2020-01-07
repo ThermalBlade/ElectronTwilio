@@ -230,4 +230,4 @@ td{
     border: 1px solid var(--table-border-color);
     padding: 6px;
 }
-.selected{ background-color: #ace; }
+.selected{ background-color: var(--red-highlight); }

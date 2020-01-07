@@ -7,12 +7,6 @@
 function matrixToTable(matrix, element, ide){
     var newTable = document.createElement("table");
 	var row, cell;
-	row = document.createElement("tr");
-	for(let i = 0; i < matrix[0].length; i ++){
-		cell = document.createElement("td");
-		row.appendChild(cell);
-	}
-	newTable.appendChild(row);
     for(let i = 0; i < matrix.length; i ++){
 		row = document.createElement("tr");
         for(var j = 0; j < matrix[0].length; j ++){
@@ -24,6 +18,5 @@ function matrixToTable(matrix, element, ide){
         newTable.appendChild(row);
     }
     newTable.id = ide;
-    console.log(newTable.id);
 	element.appendChild(newTable);
 }

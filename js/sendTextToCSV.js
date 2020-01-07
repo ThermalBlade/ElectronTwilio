@@ -1,10 +1,13 @@
-var filePath = "";
 
 //Autogrow the textbox on this page.
 $('#formSendTextMessageMessage').autogrow()
 
 function interpretFile2(matrix){
 	$('#selectBtn').prop('disabled', false);
+	var pn = document.createElement('label');
+	var tn = document.createTextNode("Select Phone Number Column:");
+	pn.appendChild(tn);
+	document.getElementById("formSendTextMessage").appendChild(pn);
 	matrixToTable(matrix, document.getElementById("formSendTextMessage"), "csvTable");
 }
 
@@ -18,12 +21,7 @@ document.querySelector('#selectBtn').addEventListener('click', function(e){
 	openFile(['txt', 'csv'], interpretFile);
 });
 
-/*document.addEventListener("mouseover", function(e){
-    if(e.target.tagName === "TD"){
-		console.log(e.target);
-	}
-});*/
-
+//Select Column from uploaded CSV
 document.addEventListener("mouseover", someListener);
 function someListener(e){
 	$('#csvTable td').on('click', function() {
