@@ -1,5 +1,8 @@
 //FUNCTIONALITY FOR singleText.html
 
+//Autogrow the form
+$('#formSendTextMessageMessage').autogrow()
+
 function singleText(){
     function sentTextPop() {
         popUp("Text Sent.", document.getElementById("formSendTextMessageMessage"));
@@ -18,5 +21,3 @@ function singleText(){
         validPhoneNumberPop();
     }
 }
-
-$('#formSendTextMessageMessage').autogrow()
