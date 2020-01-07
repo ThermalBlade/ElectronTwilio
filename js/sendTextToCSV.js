@@ -3,6 +3,41 @@
 //Autogrow the textbox on this page.
 $('#formSendTextMessageMessage').autogrow()
 
+//Select CSV button, pass it to intepretFile (set up to be asyncronous)
+document.querySelector('#selectBtn').addEventListener('click', function(e){
+    e.preventDefault();
+	$('#selectBtn').prop('disabled', true);
+	openFile(['txt', 'csv'], interpretFile);
+});
+//Continues process, turns the CSV into a matrix
+function interpretFile(filePath){
+    csvToMatrix(filePath, interpretFile2);
+}
+//Continues process, brings back button functionality and creates a Table representing the CSV
+function interpretFile2(matrix){
+	$('#selectBtn').prop('disabled', false);
+	var pn = document.createElement('label');
+	var tn = document.createTextNode("Select Phone Number Column:");
+	pn.appendChild(tn);
+	pn.setAttribute("id", "selectPhone");
+	document.getElementById("formSendTextMessage").appendChild(pn);
+	matrixToTable(matrix, document.getElementById("formSendTextMessage"), "csvTable");
+}
+
+//Select Column from uploaded CSV
+document.addEventListener("mouseover", someListener);
+function someListener(e){
+	$('#csvTable td').on('click', function() {
+		var $currentTable = $(this).closest('table');
+		var index = $(this).index();
+		$currentTable.find('td').removeClass('selected');
+		$currentTable.find('tr').each(function() {
+			$(this).find('td').eq(index).addClass('selected');
+		});
+	});
+}
+
+//Called when Send Texts is pressed, will send the texts and display errors if necessary
 function csvText(){
 	var pnumber, mes, st;
 	var failedNumbers = []
@@ -33,37 +68,4 @@ function csvText(){
 	}
 	document.getElementById("formSendTextMessage").reset();
 	sentTextsPop();
-}
-
-function interpretFile2(matrix){
-	$('#selectBtn').prop('disabled', false);
-	var pn = document.createElement('label');
-	var tn = document.createTextNode("Select Phone Number Column:");
-	pn.appendChild(tn);
-	pn.setAttribute("id", "selectPhone");
-	document.getElementById("formSendTextMessage").appendChild(pn);
-	matrixToTable(matrix, document.getElementById("formSendTextMessage"), "csvTable");
-}
-
-function interpretFile(filePath){
-    csvToMatrix(filePath, interpretFile2);
-}
-
-document.querySelector('#selectBtn').addEventListener('click', function(e){
-    e.preventDefault();
-	$('#selectBtn').prop('disabled', true);
-	openFile(['txt', 'csv'], interpretFile);
-});
-
-//Select Column from uploaded CSV
-document.addEventListener("mouseover", someListener);
-function someListener(e){
-	$('#csvTable td').on('click', function() {
-		var $currentTable = $(this).closest('table');
-		var index = $(this).index();
-		$currentTable.find('td').removeClass('selected');
-		$currentTable.find('tr').each(function() {
-			$(this).find('td').eq(index).addClass('selected');
-		});
-	});
 }
