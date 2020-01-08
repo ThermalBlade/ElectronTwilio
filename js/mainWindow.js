@@ -5,3 +5,7 @@ function loadSTWindow(){
 function loadCSVWindow(){
     loadWindow('sendTextToCSV.html');
 }
+
+function editADatabase(){
+    loadWindow('editADatabase.html')
+}
