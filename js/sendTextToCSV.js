@@ -39,9 +39,9 @@ function someListener(e){
 
 //Called when Send Texts is pressed, will send the texts and display errors if necessary
 function csvText(){
-	var pnumber, mes, st;
+	var pnumber, mes, st, ls;
 	var failedNumbers = []
-	function sentTextsPop() {
+	function sentTextsPop() { //Either shows all texts sent, or some errors occured
 		if(failedNumbers.length !== 0){
 			popUp("Some Texts Failed", document.getElementById("formSendTextMessageMessage"));
 			var pn = document.createElement('label');
@@ -56,8 +56,15 @@ function csvText(){
 		else{
 			popUp("Texts Sent", document.getElementById("formSendTextMessageMessage"));
 		}
-    }
-	var ls = document.getElementsByClassName('selected');
+	}
+	function noSelectPopup() { //No column from the CSV was selected
+		popUp("No Numbers Selected", document.getElementById("formSendTextMessageMessage"));
+	}
+	ls = document.getElementsByClassName('selected');
+	if(ls.length === 0){
+		noSelectPopup();
+		return;
+	}
 	for(var i = 0; i < ls.length; i ++){
 		pnumber = ls[i].innerHTML;
 		mes = document.getElementById("formSendTextMessageMessage").value;
