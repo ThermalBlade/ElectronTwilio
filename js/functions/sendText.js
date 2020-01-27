@@ -21,12 +21,12 @@ function sendText(pnumber, message){
     else if(pnumber.length !== 12){
         return(false);
     }
-    /*client.messages.create({
+    client.messages.create({
         body: message,
         from: process.env.TW_FROM_PHONE_NUMBER,
         statusCallback: 'https://postb.in/b/1572911748562-2505160190630',
         to: pnumber
-    });*/
-    console.log(pnumber, message);
+    });
+    //console.log(pnumber, message);
     return(true);
 }
