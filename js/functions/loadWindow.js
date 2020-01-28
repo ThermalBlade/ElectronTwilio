@@ -1,5 +1,5 @@
 //LOADS NEW WINDOW (IN SMALL FORMAT)
-//TAKES IN FILE PATH (AFTER HTML FOLDER)
+//TAKES IN FILE PATH (FROM CURRENT FOLDER)
 //TAKES IN OPTIONAL PARAMETER WIDTH AND HEIGHT (DEFAULT 600, 500 pxiels)
 //EXAMPLE CALLS: 
 //  loadWindow(singleText.html)
@@ -25,7 +25,7 @@ function loadWindow(file, w = 600, h = 500){
       }
     });
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'html/' + file),
+        pathname: path.join(__dirname, file),
         protocol:'file:',
         slashes:true
     }));

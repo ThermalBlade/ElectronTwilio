@@ -1,11 +1,15 @@
 function loadSTWindow(){
-    loadWindow('singleText.html');
+    loadWindow('html/singleText.html');
 }
 
 function loadCSVWindow(){
-    loadWindow('sendTextToCSV.html');
+    loadWindow('html/sendTextToCSV.html');
 }
 
 function editADatabase(){
-    loadWindow('editADatabase.html')
+    loadWindow('html/editADatabase.html')
+}
+
+function createNewGroup(){
+    loadWindow('html/createNewGroup.html');
 }

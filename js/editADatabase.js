@@ -10,6 +10,6 @@ dbs.listTables({}, function (err, data) {
 function displayTables(data){
     tables = data.TableNames;
     for(i = 0; i < tables.length; i ++){
-        console.log(fetchTable(tables[i]));
+        console.log(tables[i]);
     }
 }
