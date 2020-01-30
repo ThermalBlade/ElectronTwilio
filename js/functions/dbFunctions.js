@@ -13,18 +13,36 @@ let awsConfig = {
 AWS.config.update(awsConfig);
 let docClient = new AWS.DynamoDB.DocumentClient();
 
-let fetchTable = function (table){
+let fetchTable = function(table, cb){
     var params = {
         TableName: table,
     };
     docClient.scan(params, function (err, data) {
         if (err) {
-            console.log("users::fetchOneByKey::error - " + JSON.stringify(err, null, 2));
+            mes = err.message;
+            cb(mes);
         }
         else {
-            return(data.Items);
+            cb(data.Items);
         }
     })
+}
+
+let createEmptyTable = function(tn, cb){
+    var params = {
+        TableName: tn,
+        AttributeDefinitions: [
+
+        ]
+    }
+    docClient.createTable(params, function(err, data){
+        if(err){
+            console.log(err, err.stack);
+        }
+        else{
+            console.log(data);
+        }
+    });
 }
 
 let fetchOneByKey = function (table, keyid, key){

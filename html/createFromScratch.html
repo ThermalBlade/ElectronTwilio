@@ -6,13 +6,17 @@
 </head>
     <body>
         <div id="container">
-            <form id="formSendTextMessage" action="/action_page.php">
-                <p>Send Text Message</p>
-                <label>Phone Number:</label> <input type="text" id="formSendTextMessageNumber">
-                <label>Message: </label> <br> <textarea id="formSendTextMessageMessage" align="left"></textarea>
+            <form id="formCreateGroup" action="/action_page.php">
+                <p>Create New Group</p>
+                <label>Group Name:</label> <input type="text" id="formGroupName">
+                <label>Parameters (separated by comma):</label> <br> <textarea id="formParameters" align="left"></textarea>
                 <br>
-                <input type="button" onclick="singleText()" value="Send Text" id="sendTextButton">
+                <input type="button" onclick="createGroup()" value="Create Group" id="createGroupButton">
             </form>
+            <table id='showTable'>
+                <tr id='showRow'>
+                  <td>phone-number</td>
+            </table>
         </div>
         
     <!--FUNCTIONS-->
@@ -23,9 +27,11 @@
         <script type="text/javascript" src="../node_modules/jquery-autogrow-textarea/dist/jquery.autogrow.min.js"></script>
         <!--Popups-->
         <script src="../js/functions/popUp.js" type="text/javascript"></script>
+        <!--Database Functions-->
+        <script src="../js/functions/dbFunctions.js" type="text/javascript"></script>
     <!--PAGE-->
         <!--Page JS-->
-        <script src="../js/singleText.js" type="text/javascript"></script>
+        <script src="../js/createFromScratch.js" type="text/javascript"></script>
 
     </body>
 </html>

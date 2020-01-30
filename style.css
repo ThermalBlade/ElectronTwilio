@@ -99,7 +99,7 @@ input[type=text], select {
 input[type=text]:hover, select:hover, input[type=text]:focus, select:focus{
     outline: 0
 }
-#formSendTextMessageMessage {
+form textarea{
     width: 80%;
     padding: 12px 12px;
     margin: 8px 0px;
@@ -112,7 +112,7 @@ input[type=text]:hover, select:hover, input[type=text]:focus, select:focus{
     color: black;
     min-height: 10px;
 }
-#formSendTextMessageMessage:hover, #formSendTextMessageMessage:focus {
+form textarea:hover, form textarea:focus {
     outline: 0
 }
 input[type=button], #formCSV {
