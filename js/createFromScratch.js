@@ -16,18 +16,18 @@ function createGroup(){
                 newParm += car;
             }
             newParm = newParm.replace(/\s/g, "");
-            cell = document.createElement("td");
-            textNode = document.createTextNode(newParm);
+            var cell = document.createElement("td");
+            var textNode = document.createTextNode(newParm);
             cell.appendChild(textNode);
             document.getElementById('showRow').appendChild(cell);
             newParm = "";
         }
     }
     var groupName = document.getElementById("formGroupName").value;
-    fetchTable(groupName, checkGroup);
+    fetchTable(groupName, createGroup2);
 }
 
-function checkGroup(sb){
+function createGroup2(sb){
     function groupNameExistsPopup() {
         popUp("Group name already exists.", document.getElementById("formGroupName"));
     }
@@ -40,7 +40,7 @@ function checkGroup(sb){
         var button = document.createElement('input');
         button.type = "button";
         button.value = "Confirm Group";
-        button.onclick = finilizeGroup();
+        button.onclick = createGroup3;
         form.appendChild(button);
         document.getElementById('container').appendChild(form);
     }
@@ -50,6 +50,16 @@ function checkGroup(sb){
     }
 }
 
-function finilizeGroup(){
-    
+function createGroup3(){
+    var ats = [];
+    var title = document.getElementById('formGroupName').value;
+    var row = document.getElementById('showRow');
+    for(i = 0; i < row.childElementCount; i ++){
+        ats.push(row.getElementsByTagName('td')[i].innerHTML);
+    }
+    createEmptyTable(title, ats, createGroup4);
+}
+
+function createGroup4(){
+    console.log("SUCCESS");
 }

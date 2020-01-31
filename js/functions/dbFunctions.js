@@ -11,6 +11,7 @@ let awsConfig = {
 };
 
 AWS.config.update(awsConfig);
+let dynamoClient = new AWS.DynamoDB;
 let docClient = new AWS.DynamoDB.DocumentClient();
 
 let fetchTable = function(table, cb){
@@ -28,21 +29,66 @@ let fetchTable = function(table, cb){
     })
 }
 
-let createEmptyTable = function(tn, cb){
+let createEmptyTable = function(tn, ats, cb){
+    AtDefinitions = [];
+    sKeySchem = [];
+    for(i = 0; i < 2; i ++){
+        var at = {
+            AttributeName: ats[i],
+            AttributeType: "S"
+        };
+        AtDefinitions.push(at);
+    }
+    console.log(AtDefinitions);
     var params = {
         TableName: tn,
-        AttributeDefinitions: [
-
+        AttributeDefinitions: AtDefinitions,
+        ProvisionedThroughput: {
+            ReadCapacityUnits: 5,
+            WriteCapacityUnits: 5
+        },
+        KeySchema: [
+            {
+                AttributeName: ats[0],
+                KeyType: "HASH"
+            },
+            {
+                AttributeName: ats[1],
+                KeyType: "RANGE"
+            }
         ]
-    }
-    docClient.createTable(params, function(err, data){
+    };
+    dynamoClient.createTable(params, function(err, data){
         if(err){
             console.log(err, err.stack);
         }
         else{
-            console.log(data);
+            setTimeout(function(){addRow(tn, ats);}, 20000);
+            //console.log(data);
+            // addRow(tn, ats);
         }
     });
+}
+
+let addRow = function(table, row){
+    items = {};
+    for(i = 0; i < row.length; i ++){
+        var n = row[i]
+        items[n] = "temp";
+    }
+    console.log(table);
+    var params = {
+        TableName: table,
+        Item: items
+    };
+    docClient.put(params, function (err, data) {
+
+        if (err) {
+            console.log("users::update::error - " + JSON.stringify(err, null, 2));
+        } else {
+            console.log("users::update::success "+JSON.stringify(data) );
+        }
+    });   
 }
 
 let fetchOneByKey = function (table, keyid, key){
