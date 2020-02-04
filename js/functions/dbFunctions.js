@@ -14,22 +14,51 @@ AWS.config.update(awsConfig);
 let dynamoClient = new AWS.DynamoDB;
 let docClient = new AWS.DynamoDB.DocumentClient();
 
+function checkTable(tableName){
+    status = "false";
+    var params = {
+        TableName: tableName
+    };
+    dynamoClient.describeTable(params, function(err, data) {
+        if(err){
+            status = "false";
+            //console.log(err, err.stack);
+        }
+        else{
+            status = "true";
+            //console.log(data);
+        }
+        console.log(status);
+        return(status);
+    });
+}
+
 let fetchTable = function(table, cb){
     var params = {
         TableName: table,
     };
     docClient.scan(params, function (err, data) {
-        if (err) {
+        if(err){
             mes = err.message;
             cb(mes);
         }
-        else {
+        else{
             cb(data.Items);
         }
     })
 }
 
 let createEmptyTable = function(tn, ats, cb){
+    function waitForTable(TName, atris, callb){
+        let stat = checkTable(TName);
+        console.log(stat);
+        if(stat == "true"){
+            addRow(Tname, atris, callb);
+        }
+        else{
+            setTimeout(function(){waitForTable(TName, atris, callb);}, 1000);
+        }
+    }
     AtDefinitions = [];
     sKeySchem = [];
     for(i = 0; i < 2; i ++){
@@ -63,14 +92,14 @@ let createEmptyTable = function(tn, ats, cb){
             console.log(err, err.stack);
         }
         else{
-            setTimeout(function(){addRow(tn, ats);}, 20000);
+            waitForTable(tn, ats, cb);
             //console.log(data);
             // addRow(tn, ats);
         }
     });
 }
 
-let addRow = function(table, row){
+let addRow = function(table, row, cb){
     items = {};
     for(i = 0; i < row.length; i ++){
         var n = row[i]
@@ -82,12 +111,12 @@ let addRow = function(table, row){
         Item: items
     };
     docClient.put(params, function (err, data) {
-
         if (err) {
             console.log("users::update::error - " + JSON.stringify(err, null, 2));
         } else {
             console.log("users::update::success "+JSON.stringify(data) );
         }
+        cb();
     });   
 }
 
