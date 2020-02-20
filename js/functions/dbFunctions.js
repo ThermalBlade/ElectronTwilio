@@ -14,7 +14,7 @@ AWS.config.update(awsConfig);
 let dynamoClient = new AWS.DynamoDB;
 let docClient = new AWS.DynamoDB.DocumentClient();
 
-function checkTable(tableName){
+function checkTable(tableName, cb){
     status = "false";
     var params = {
         TableName: tableName
@@ -28,8 +28,7 @@ function checkTable(tableName){
             status = "true";
             //console.log(data);
         }
-        console.log(status);
-        return(status);
+        cb(status);
     });
 }
 
@@ -50,7 +49,7 @@ let fetchTable = function(table, cb){
 
 let createEmptyTable = function(tn, ats, cb){
     function waitForTable(TName, atris, callb){
-        let stat = checkTable(TName);
+        checkTable(TName);
         console.log(stat);
         if(stat == "true"){
             addRow(Tname, atris, callb);
