@@ -3,7 +3,7 @@ function loadSTWindow(){
 }
 
 function loadCSVWindow(){
-    loadWindow('html/sendTextToCSV.html');
+    loadWindow('html/sendTextToMaster.html');
 }
 
 function editADatabase(){
