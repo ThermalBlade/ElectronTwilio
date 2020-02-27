@@ -1,7 +1,6 @@
 //FUNCTIONALITY for sendTextToCSV.html
 
 let masterText = function(){
-    console.log('aaaaa');
     docClient.scan(params, onScan);
 }
 
@@ -25,20 +24,12 @@ function onScan(err, data) {
         console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
     } else {        
         var count = 0;
-        console.log("Scan succeeded.");
         data.Items.forEach(function(itemdata) {
-            
             mes = document.getElementById("formSendTextMessageMessage").value;
-           console.log(itemdata.phonenumber);
-           sendText(itemdata.phonenumber, mes)
+            if(itemdata.cantext == "true"){
+                sendText(itemdata.phonenumber, mes);
+            }
         });
-
-        // continue scanning if we have more items
-        if (typeof data.LastEvaluatedKey != "undefined") {
-            console.log("Scanning for more...");
-            params.ExclusiveStartKey = data.LastEvaluatedKey;
-            docClient.scan(params, onScan);
-        }
     }
 }
 
